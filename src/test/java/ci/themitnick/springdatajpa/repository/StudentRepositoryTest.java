@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -34,13 +37,31 @@ class StudentRepositoryTest {
     @Test
     public void saveStudentWithGuardian(){
         Student student = Student.builder()
-                .lastName("Cisse")
-                .firstName("Jean Luc")
-                .email("luc@gmail.com")
+                .lastName("Goudou")
+                .firstName("Jeannot")
+                .email("g.jeannot@yaho.com")
                 .guardian(guardian)
                 .build();
 
         studentRepository.save(student);
+    }
+
+    @Test
+    public void findStudentByFirstName(){
+        List<Student> students = studentRepository.findByFirstName("tyrone");
+        System.out.println("Students = " + students);
+    }
+
+    @Test
+    public void findStudentContainingName(){
+        List<Student> students = studentRepository.findByFirstNameContaining("Jean");
+        System.out.println("Students list = " + students);
+    }
+
+    @Test
+    public void findByFirstNameAndLastName(){
+        Optional<Student> student = studentRepository.findByFirstNameAndLastName("tyrone", "YAO");
+        System.out.println("Student =" + student);
     }
 
 }
