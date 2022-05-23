@@ -2,8 +2,10 @@ package ci.themitnick.springdatajpa.repository;
 
 import ci.themitnick.springdatajpa.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -38,4 +40,12 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
             nativeQuery = true
     )
     Student getStudentByEmailAddressNamedParameter(@Param("email") String email);
+
+    @Modifying
+    @Transactional
+    @Query(
+            value = "update student set first_name = ?1 where email = ?2",
+            nativeQuery = true
+    )
+    int updateStudentNameByEmailAddress(String firstName, String email);
 }
