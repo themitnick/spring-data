@@ -1,22 +1,22 @@
-spring:
-  profiles:
-    active: dev
-
-#server:
-#  port: 8081
 #spring:
-#  datasource:
-#    driver-class-name: org.postgresql.Driver
-#    url: jdbc:postgresql://localhost:5432/schooldb?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
-#    username: <your db username>
-#    password: <your db password>
-#  ## Specify DBMS
-#  jpa:
-#    database: POSTGRESQL
-#    show-sql: true
-#    # Hibernate DDL Auto (create, create-drop, update)
-#    hibernate:
-#      ddl-auto: update
-#      dialect: org.hibernate.dialect.PostgreSQLDialect
 #  profiles:
 #    active: dev
+
+server:
+  port: 8081
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/<your db name>?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false
+    username: <your db username>
+    password: <your db password>
+  ## Specify DBMS
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    # Hibernate DDL Auto (create, create-drop, update)
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  profiles:
+    active: dev
